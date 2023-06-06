@@ -16,18 +16,18 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+// import java.awt.event.ActionEvent;
+// import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-public class Ventana extends JFrame implements ActionListener {
-    public static void main(String[] args){
-        Ventana v1 = new Ventana();
-        v1.setVisible(true);
-    }
+public class Ventana extends JFrame{
+    // public static void main(String[] args){
+    //     Ventana v1 = new Ventana();
+    //     v1.setVisible(true);
+    // }
     public ArrayList <Dulce> lista_dulces = new ArrayList<Dulce>();
     public JPanel panelPrincipal, panelPrincipal2, panelPrincipal3, panelEspacioDerecha, panelEspacioIzquierda, panelEspacioAbajo, panelInsertar, panelInsertarEtiquetas, panelActualizar, panelActualizarDatos, panelActualizarOpciones, panelEliminar, panelBuscar, panelBuscarSuperior, panelBuscarInferior, panelBuscarInferiorCentro, panelListar;
     public ImageIcon imagenIcono;
@@ -71,7 +71,7 @@ public class Ventana extends JFrame implements ActionListener {
         
         for(int i = 0; i<botonesPanelPrincipal.length; i++){
             botonesPanelPrincipal[i] = new JButton();
-            botonesPanelPrincipal[i].addActionListener(this);
+            // botonesPanelPrincipal[i].addActionListener(this);
             botonesPanelPrincipal[i].setFont(new Font("Arial",Font.BOLD,15));
             botonesPanelPrincipal[i].setText(opcionesPanelPrincipal[i]);
             botonesPanelPrincipal[i].setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),5));
@@ -120,7 +120,7 @@ public class Ventana extends JFrame implements ActionListener {
         categorias = new JComboBox<>(opciones);
         categorias.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),30));
         categorias.setFont(new Font("Arial", Font.BOLD,25));
-        categorias.addActionListener(this);
+        // categorias.addActionListener(this);
         for(int i = 0; i<etiquetasPanelInsertar.length; i++){
             etiquetasPanelInsertar[i] = new JLabel();
             etiquetasPanelInsertar[i].setText(opcionesPanelEtiquetas[i]);
@@ -144,7 +144,7 @@ public class Ventana extends JFrame implements ActionListener {
             }
         }        
         botonEnviarInsertar = new JButton("Enviar");
-        botonEnviarInsertar.addActionListener(this);
+        // botonEnviarInsertar.addActionListener(this);
         
         panelInsertar.add(panelInsertarEtiquetas, BorderLayout.CENTER);
         panelInsertar.add(botonEnviarInsertar, BorderLayout.SOUTH);
@@ -174,7 +174,7 @@ public class Ventana extends JFrame implements ActionListener {
         });
 
         botonEnviarActualizar = new JButton("Enviar");
-        botonEnviarActualizar.addActionListener(this);
+        // botonEnviarActualizar.addActionListener(this);
         botonEnviarActualizar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),50));
         botonEnviarActualizar.setFont(new Font("Arial", Font.BOLD, 30));
         panelActualizar.add(etiquetaActualizar);
@@ -250,7 +250,7 @@ public class Ventana extends JFrame implements ActionListener {
         scroll6.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),15));
 
         botonEnviarActualizarOpciones = new JButton("Enviar");
-        botonEnviarActualizarOpciones.addActionListener(this);
+        // botonEnviarActualizarOpciones.addActionListener(this);
         botonEnviarActualizarOpciones.setFont(new Font("Arial", Font.BOLD, 20));
         botonEnviarActualizarOpciones.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),15));
 
@@ -290,7 +290,7 @@ public class Ventana extends JFrame implements ActionListener {
         });
 
         botonEliminar = new JButton("Eliminar");
-        botonEliminar.addActionListener(this);
+        // botonEliminar.addActionListener(this);
         botonEliminar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),110));
         botonEliminar.setFont(new Font("Arial", Font.BOLD, 30));
 
@@ -321,7 +321,7 @@ public class Ventana extends JFrame implements ActionListener {
         });
 
         botonBuscar = new JButton("Buscar");
-        botonBuscar.addActionListener(this);
+        // botonBuscar.addActionListener(this);
         botonBuscar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),5));
         botonBuscar.setFont(new Font("Arial", Font.BOLD, 30));
 
@@ -346,7 +346,7 @@ public class Ventana extends JFrame implements ActionListener {
         etiquetaBuscarPrecio.setHorizontalAlignment(SwingConstants.CENTER);
 
         botonRegresar = new JButton("Regresar");
-        botonRegresar.addActionListener(this);
+        // botonRegresar.addActionListener(this);
 
         panelBuscarInferior.add(etiquetaBuscarNombre);
         panelBuscarInferior.add(etiquetaBuscarCategoria);
@@ -368,17 +368,15 @@ public class Ventana extends JFrame implements ActionListener {
         scroll7 = new JScrollPane(areaTextoListar, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         botonRegresarListar = new JButton("Regresar");
-        botonRegresarListar.addActionListener(this);
+        // botonRegresarListar.addActionListener(this);
 
 
         panelListar.add(scroll7, BorderLayout.CENTER);
         panelListar.add(botonRegresarListar, BorderLayout.SOUTH);
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'actionPerformed'");
-    }
+    // @Override
+    // public void actionPerformed(ActionEvent e) {
+    // }
 
 }

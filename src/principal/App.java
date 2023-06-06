@@ -1,14 +1,14 @@
 package principal;
-import Controlador.controlador;
+import Controlador.Controlador;
+import Modelo.Dulce;
 import Vista.Ventana;
 
 public class App {
     public static void main(String[] args){
+        Dulce modelo = new Dulce();
         Ventana vista = new Ventana();
-        controlador ctr = new controlador(vista);
-        // Ventana v1 = new Ventana();        
-        ctr.iniciar();
-        vista.setVisible(true);
+        Controlador control = new Controlador(vista,modelo);
+        control.Iniciar();     
     }
 }
 

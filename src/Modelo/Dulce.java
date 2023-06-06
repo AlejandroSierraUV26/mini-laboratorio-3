@@ -7,7 +7,6 @@ public class Dulce {
     private short precio;
     private String codigo;
     public Dulce(){
-        
     }
     public Dulce(String nombre,String codigo, String categoria, short cantidad, short precio){
         this.nombre = nombre;

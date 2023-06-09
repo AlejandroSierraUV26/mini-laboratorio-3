@@ -92,7 +92,7 @@ public class Control implements ActionListener{
                 vista.add(vista.panelActualizar);
             }
             else{
-                JOptionPane.showMessageDialog(null,"No se pueden Actualizar dulces, si no hay ingresado al menos 1","Advertencia",JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(null,"No se pueden Actualizar dulces, sino ha ingresado al menos 1","Advertencia",JOptionPane.WARNING_MESSAGE);
             }
             
         }
@@ -150,28 +150,42 @@ public class Control implements ActionListener{
         }
 
         else if(evento.getSource() == vista.botonesPanelPrincipal[2]){
-            vista.panelPrincipal.setVisible(false);
-            vista.panelEliminar.setVisible(true);
-            vista.add(vista.panelEliminar);
+            if(modelo.lista_dulces.size() >0){
+                vista.panelPrincipal.setVisible(false);
+                vista.panelEliminar.setVisible(true);
+                vista.add(vista.panelEliminar);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"No se pueden Eliminar dulces, sino ha ingresado al menos 1","Advertencia",JOptionPane.WARNING_MESSAGE);
+            }
+            
         }
         else if(evento.getSource() == vista.botonEliminar){
             vista.contenido8 = vista.areaTextoEliminar.getText().trim();
-            if(vista.contenido8.isEmpty() || vista.contenido8.length()<6){
-                JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
-            }
-            else{
-                for(int i=0; i<modelo.lista_dulces.size();i++){
-                    if(modelo.lista_dulces.get(i).getCodigo().equals(vista.contenido8)){
-                        modelo.lista_dulces.remove(modelo.lista_dulces.get(i));
+            for(int i =0 ; i<modelo.lista_dulces.size() ; i++){
+                if(vista.contenido8.equals(modelo.lista_dulces.get(i).getCodigo())){
+                    if(vista.contenido8.isEmpty() || vista.contenido8.length()<6){
+                        JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
                     }
+                    else{
+                        for(int j=0; i<modelo.lista_dulces.size();i++){
+                            if(modelo.lista_dulces.get(j).getCodigo().equals(vista.contenido8)){
+                                modelo.lista_dulces.remove(modelo.lista_dulces.get(j));
+                            }
+                        }
+                        
+                        JOptionPane.showMessageDialog(null,"Producto Eliminado","Eliminado",JOptionPane.INFORMATION_MESSAGE);
+                        vista.areaTextoEliminar.setText(null);
+                        vista.panelEliminar.setVisible(false);
+                        vista.panelPrincipal.setVisible(true);
+                        vista.add(vista.panelPrincipal);
+                    }
+                    
                 }
-                
-                JOptionPane.showMessageDialog(null,"Producto Eliminado","Eliminado",JOptionPane.INFORMATION_MESSAGE);
-                vista.areaTextoEliminar.setText(null);
-                vista.panelEliminar.setVisible(false);
-                vista.panelPrincipal.setVisible(true);
-                vista.add(vista.panelPrincipal);
-             }
+                else{
+                    JOptionPane.showMessageDialog(null,"El codigo que ingresa al parecer no existe","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
+            }
         }
         else if(evento.getSource() == vista.botonesPanelPrincipal[3]){
             vista.panelPrincipal.setVisible(false);

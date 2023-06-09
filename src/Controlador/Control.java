@@ -168,10 +168,8 @@ public class Control implements ActionListener{
                         JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
                     }
                     else{
-                        for(int j=0; i<modelo.lista_dulces.size();i++){
-                            if(modelo.lista_dulces.get(j).getCodigo().equals(vista.contenido8)){
-                                modelo.lista_dulces.remove(modelo.lista_dulces.get(j));
-                            }
+                        if(modelo.lista_dulces.get(i).getCodigo().equals(vista.contenido8)){
+                            modelo.lista_dulces.remove(modelo.lista_dulces.get(i));
                         }
                         
                         JOptionPane.showMessageDialog(null,"Producto Eliminado","Eliminado",JOptionPane.INFORMATION_MESSAGE);
@@ -194,20 +192,24 @@ public class Control implements ActionListener{
         }
         else if(evento.getSource() == vista.botonBuscar){
             vista.contenido9 = vista.areaTextoBuscar.getText().trim();
-            if(vista.contenido9.isEmpty() || vista.contenido9.length()<6){
-                JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
-            }
-            else{
-                    for(int i=0; i<modelo.lista_dulces.size();i++){
+            for(int i =0 ; i<modelo.lista_dulces.size() ; i++){
+                if(vista.contenido9.equals(modelo.lista_dulces.get(i).getCodigo())){
+                    if(vista.contenido9.isEmpty() || vista.contenido9.length()<6){
+                        JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
+                    }
+                    else{
                         if(modelo.lista_dulces.get(i).getCodigo().equals(vista.contenido9)){
                             vista.etiquetaBuscarNombre.setText("Nombre: " + modelo.lista_dulces.get(i).getNombre());
                             vista.etiquetaBuscarCategoria.setText("Categoria: "+ modelo.lista_dulces.get(i).getCategoria());
                             vista.etiquetaBuscarCantidad.setText("Cantidad: "+ modelo.lista_dulces.get(i).getCantidad());
                             vista.etiquetaBuscarPrecio.setText("Precio: " + modelo.lista_dulces.get(i).getPrecio());
                         }
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(null,"El codigo que ingresa al parecer no existe","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
             }
-
-        }
         }
         else if(evento.getSource() == vista.botonRegresar){
             vista.areaTextoBuscar.setText(null);

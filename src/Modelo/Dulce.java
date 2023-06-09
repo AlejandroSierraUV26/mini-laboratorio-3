@@ -67,18 +67,18 @@ public class Dulce {
         this.lista_dulces = lista_dulces;
     }
     public void psbotonInsertar(){
-        JOptionPane.showMessageDialog(null,"Boton Insertar");
+        JOptionPane.showMessageDialog(null,"Boton Insertar Precionado");
     }
     public void psbotonActualizar(){
-        JOptionPane.showMessageDialog(null,"Boton Actualizar");
+        JOptionPane.showMessageDialog(null,"Boton Actualizar Precionado");
     }
     public void psbotonEliminar(){
-        JOptionPane.showMessageDialog(null,"Boton Eliminar");
+        JOptionPane.showMessageDialog(null,"Boton Eliminar Precionado");
     }
     public void psbotonBuscar(){
-        JOptionPane.showMessageDialog(null,"Boton Buscar");
+        JOptionPane.showMessageDialog(null,"Boton Buscar Precionado");
     }
     public void psbotonListar(){
-        JOptionPane.showMessageDialog(null,"Boton Listar");
+        JOptionPane.showMessageDialog(null,"Boton Listar Precionado");
     }
 }

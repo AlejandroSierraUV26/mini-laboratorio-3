@@ -6,7 +6,6 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-// import javax.swing.JOptionPane;
 
 import Modelo.Dulce;
 import Vista.Ventana;
@@ -53,10 +52,10 @@ public class Control implements ActionListener{
             modelo.psbotonInsertar();   
         }
         else if(evento.getSource()==vista.botonEnviarInsertar){
-            //  if(vista.contenido.isEmpty() && vista.contenido2.isEmpty() && vista.contenido3.isEmpty()){
-            //     JOptionPane.showMessageDialog(null,"Llene todas las casillas","Advertencia",JOptionPane.WARNING_MESSAGE);       
-            // }
-            // else{
+            if(vista.areaTextoNombre.getText().isEmpty() || vista.areaTextoPrecio.getText().isEmpty() || vista.areaTextoCantidad.getText().isEmpty()){
+                JOptionPane.showMessageDialog(null,"Llene todas las casillas","Advertencia",JOptionPane.WARNING_MESSAGE);       
+            }
+            else{
                 String codigo="";
                 int x,n;
                 String[] letras = 
@@ -85,7 +84,7 @@ public class Control implements ActionListener{
                 vista.panelInsertar.setVisible(false);
                 vista.panelPrincipal.setVisible(true);
                 vista.add(vista.panelPrincipal);
-            // }
+            }
             
             
         }

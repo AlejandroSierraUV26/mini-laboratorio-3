@@ -23,11 +23,9 @@ public class Control implements ActionListener{
         vista.setTitle("RINCON DULCE");
         vista.setResizable(false);
         vista.setLocationRelativeTo(null);
-        vista.botonesPanelPrincipal[0].addActionListener(this);
-        vista.botonesPanelPrincipal[1].addActionListener(this);
-        vista.botonesPanelPrincipal[2].addActionListener(this);
-        vista.botonesPanelPrincipal[3].addActionListener(this);
-        vista.botonesPanelPrincipal[4].addActionListener(this);
+        for(int i = 0;i<5;i++ ){
+            vista.botonesPanelPrincipal[i].addActionListener(this);
+        }
         vista.botonEnviarActualizar.addActionListener(this);
         vista.botonEnviarInsertar.addActionListener(this);
         vista.botonEnviarActualizarOpciones.addActionListener(this);
@@ -49,11 +47,30 @@ public class Control implements ActionListener{
             vista.add(vista.panelInsertar);
         }
         else if(evento.getSource()==vista.botonEnviarInsertar){
+            Short cantidad =0;
+            Short precio = 0; 
+            boolean ValorError = false;
             if(vista.areaTextoNombre.getText().isEmpty() || vista.areaTextoPrecio.getText().isEmpty() || vista.areaTextoCantidad.getText().isEmpty()){
                 JOptionPane.showMessageDialog(null,"Llene todas las casillas","Advertencia",JOptionPane.WARNING_MESSAGE);       
             }
             else{
-                String codigo="";
+           try {
+                String userInput = vista.areaTextoPrecio.getText();
+                String userInput2 = vista.areaTextoCantidad.getText();
+                precio = Short.parseShort(userInput); // O Double.parseDouble(userInput) si esperas un número decima
+                cantidad = Short.parseShort(userInput2); // O Double.parseDouble(userInput) si esperas un número decima
+                
+                ValorError = false;
+    
+                // Aquí puedes realizar acciones adicionales con el número ingresado correctamente
+                // ...
+    
+            } catch (NumberFormatException e) {
+                ValorError = true;
+            // El usuario ingresó un valor no válido, muestra un mensaje de error o realiza alguna acción
+            }
+            
+            String codigo="";
                 int x,n;
                 String[] letras = 
                 {"A","B","C","D","E",
@@ -69,18 +86,23 @@ public class Control implements ActionListener{
                     n = (int) (Math.random() * 10 + 0);
                     codigo += n;
                 }
+                if(ValorError){
+                    JOptionPane.showMessageDialog(null,"Error","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
+                else{
+                    Dulce n1 = new Dulce(vista.areaTextoNombre.getText(),codigo,vista.categorias.getSelectedItem().toString(),cantidad,precio);
+                    modelo.lista_dulces.add(n1);
+                    
+                    JOptionPane.showMessageDialog(null,"El codigo del producto es: " + codigo, "CODIGO", JOptionPane.INFORMATION_MESSAGE);
+                    vista.areaTextoNombre.setText(null);
+                    vista.categorias.setSelectedItem("Acido");
+                    vista.areaTextoPrecio.setText(null);;
+                    vista.areaTextoCantidad.setText(null);
+                    vista.panelInsertar.setVisible(false);
+                    vista.panelPrincipal.setVisible(true);
+                    vista.add(vista.panelPrincipal);
+                }
                 
-                Dulce n1 = new Dulce(vista.areaTextoNombre.getText(),codigo,vista.categorias.getSelectedItem().toString(),Short.parseShort(vista.areaTextoCantidad.getText()),Short.parseShort(vista.areaTextoPrecio.getText()));
-                modelo.lista_dulces.add(n1);
-                
-                JOptionPane.showMessageDialog(null,"El codigo del producto es: " + codigo, "CODIGO", JOptionPane.INFORMATION_MESSAGE);
-                vista.areaTextoNombre.setText(null);
-                vista.categorias.setSelectedItem("Acido");
-                vista.areaTextoPrecio.setText(null);;
-                vista.areaTextoCantidad.setText(null);
-                vista.panelInsertar.setVisible(false);
-                vista.panelPrincipal.setVisible(true);
-                vista.add(vista.panelPrincipal);
             }
             
             

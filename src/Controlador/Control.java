@@ -86,20 +86,34 @@ public class Control implements ActionListener{
             
         }
         else if(evento.getSource() == vista.botonesPanelPrincipal[1]){
-            vista.panelPrincipal.setVisible(false);
-            vista.panelActualizar.setVisible(true);
-            vista.add(vista.panelActualizar);
+            if(modelo.lista_dulces.size() >0){
+                vista.panelPrincipal.setVisible(false);
+                vista.panelActualizar.setVisible(true);
+                vista.add(vista.panelActualizar);
+            }
+            else{
+                JOptionPane.showMessageDialog(null,"No se pueden Actualizar dulces, si no hay ingresado al menos 1","Advertencia",JOptionPane.WARNING_MESSAGE);
+            }
+            
         }
         else if(evento.getSource()==vista.botonEnviarActualizar){
-                if(vista.areaTextoActualizar.getText().isEmpty() || vista.areaTextoActualizar.getText().length()<6){
-                    JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
+            for(int i =0 ; i<modelo.lista_dulces.size() ; i++){
+                if(vista.areaTextoActualizar.getText().equals(modelo.lista_dulces.get(i).getCodigo())){
+                    if(vista.areaTextoActualizar.getText().isEmpty() || vista.areaTextoActualizar.getText().length()<6){
+                        JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
+                    }
+                    else{                    
+                    vista.etiquetaActualizarDatos.setText(vista.areaTextoActualizar.getText());
+                    vista.panelActualizar.setVisible(false);             
+                    vista.panelActualizarDatos.setVisible(true);
+                    vista.add(vista.panelActualizarDatos);
                 }
-                else{                    
-                vista.etiquetaActualizarDatos.setText(vista.areaTextoActualizar.getText());
-                vista.panelActualizar.setVisible(false);             
-                vista.panelActualizarDatos.setVisible(true);
-                vista.add(vista.panelActualizarDatos);
                 }
+                else{
+                    JOptionPane.showMessageDialog(null,"El codigo que ingresa al parecer no existe","Advertencia",JOptionPane.WARNING_MESSAGE);
+                }
+            }
+               
         }
         else if(evento.getSource() == vista.botonEnviarActualizarOpciones){
             vista.contenido5 = vista.areaTextoActualizarNombre.getText().trim();

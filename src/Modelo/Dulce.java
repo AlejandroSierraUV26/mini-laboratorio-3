@@ -1,8 +1,11 @@
 package Modelo;
 
+import java.util.ArrayList;
+
 import javax.swing.JOptionPane;
 
 public class Dulce {
+    public ArrayList <Dulce> lista_dulces = new ArrayList<Dulce>();
     private String nombre;
     private String categoria;
     private short cantidad;
@@ -56,6 +59,12 @@ public class Dulce {
                 +  "           Categoria : " + getCategoria() +"                \n"                
                 +  "           Cantidad : "+ getCantidad()+"                       "); 
         return texto;
+    }
+        public ArrayList<Dulce> getLista_dulces() {
+        return lista_dulces;
+    }
+    public void setLista_dulces(ArrayList<Dulce> lista_dulces) {
+        this.lista_dulces = lista_dulces;
     }
     public void psbotonInsertar(){
         JOptionPane.showMessageDialog(null,"Boton Insertar");

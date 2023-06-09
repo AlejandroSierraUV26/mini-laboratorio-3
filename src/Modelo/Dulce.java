@@ -1,13 +1,13 @@
 package Modelo;
 
+import javax.swing.JOptionPane;
+
 public class Dulce {
     private String nombre;
     private String categoria;
     private short cantidad;
     private short precio;
     private String codigo;
-    public Dulce(){
-    }
     public Dulce(String nombre,String codigo, String categoria, short cantidad, short precio){
         this.nombre = nombre;
         this.codigo = codigo;
@@ -15,6 +15,8 @@ public class Dulce {
         this.cantidad = cantidad;
         this.precio = precio;
 
+    }
+    public Dulce() {
     }
     public String getCodigo() {
         return codigo;
@@ -54,5 +56,20 @@ public class Dulce {
                 +  "           Categoria : " + getCategoria() +"                \n"                
                 +  "           Cantidad : "+ getCantidad()+"                       "); 
         return texto;
+    }
+    public void psbotonInsertar(){
+        JOptionPane.showMessageDialog(null,"Boton Insertar");
+    }
+    public void psbotonActualizar(){
+        JOptionPane.showMessageDialog(null,"Boton Actualizar");
+    }
+    public void psbotonEliminar(){
+        JOptionPane.showMessageDialog(null,"Boton Eliminar");
+    }
+    public void psbotonBuscar(){
+        JOptionPane.showMessageDialog(null,"Boton Buscar");
+    }
+    public void psbotonListar(){
+        JOptionPane.showMessageDialog(null,"Boton Listar");
     }
 }

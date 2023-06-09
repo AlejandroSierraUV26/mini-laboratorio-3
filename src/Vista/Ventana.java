@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
-import Modelo.Dulce;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -16,47 +15,32 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-// import java.awt.event.ActionEvent;
-// import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
-public class Ventana extends JFrame{
-    // public static void main(String[] args){
-    //     Ventana v1 = new Ventana();
-    //     v1.setVisible(true);
-    // }
-    public ArrayList <Dulce> lista_dulces = new ArrayList<Dulce>();
+
+public class Ventana extends JFrame {
     public JPanel panelPrincipal, panelPrincipal2, panelPrincipal3, panelEspacioDerecha, panelEspacioIzquierda, panelEspacioAbajo, panelInsertar, panelInsertarEtiquetas, panelActualizar, panelActualizarDatos, panelActualizarOpciones, panelEliminar, panelBuscar, panelBuscarSuperior, panelBuscarInferior, panelBuscarInferiorCentro, panelListar;
-    public ImageIcon imagenIcono;
-    public JLabel logoRinconDulce, etiquetaActualizar, etiquetaActualizarDatos, etiquetaRelleno1, etiquetaRelleno2, etiquetaEliminar, etiquetaBuscar, etiquetaBuscarNombre, etiquetaBuscarCategoria, etiquetaBuscarCantidad, etiquetaBuscarPrecio;
+    ImageIcon imagenIcono;
+    JLabel logoRinconDulce, etiquetaActualizar, etiquetaActualizarDatos, etiquetaRelleno1, etiquetaRelleno2, etiquetaEliminar, etiquetaBuscar, etiquetaBuscarNombre, etiquetaBuscarCategoria, etiquetaBuscarCantidad, etiquetaBuscarPrecio;
     public JButton[] botonesPanelPrincipal = new JButton[5];
-    public JLabel[] etiquetasPanelInsertar = new JLabel[4];
-    public String opcionesPanelPrincipal[] = {"Insertar Dulce", "Actualizar Dulces", "Eliminar Dulces", "Buscar Dulces", "Listar Dulces"};
-    public String opcionesPanelEtiquetas[] = {"Nombre", "Categoria", "Precio", "Cantidad"};
+    JLabel[] etiquetasPanelInsertar = new JLabel[4];
+    String opcionesPanelPrincipal[] = {"Insertar Dulce", "Actualizar Dulces", "Eliminar Dulces", "Buscar Dulces", "Listar Dulces"};
+    String opcionesPanelEtiquetas[] = {"Nombre", "Categoria", "Precio", "Cantidad"};
     public JButton botonEnviarInsertar, botonEnviarActualizar, botonEnviarActualizarOpciones, botonEliminar, botonBuscar, botonRegresar, botonRegresarListar;
     public JTextArea areaTextoNombre, areaTextoPrecio, areaTextoCantidad, areaTextoActualizar, areaTextoActualizarNombre, areaTextoActualizarPrecio, areaTextoActualizarCantidad, areaTextoEliminar, areaTextoBuscar, areaTextoListar;
-    public String[] opciones = {"Acido","Dulce","Sin Azucar"};
+    String[] opciones = {"Acido","Dulce","Sin Azucar"};
     public JComboBox<String> categorias;
-    public JScrollPane scroll, scroll2, scroll3, scroll4, scroll5, scroll6, scroll7;
     public String contenido, contenido2, contenido3, contenido4, contenido5, contenido6, contenido7, contenido8, contenido9, categoriaSeleccionada;
-    public JCheckBox checkBox1, checkBox2, checkBox3;
-    
-
+    JScrollPane scroll, scroll2, scroll3, scroll4, scroll5, scroll6, scroll7;
+    JCheckBox checkBox1, checkBox2, checkBox3;
     public Ventana(){
-        setSize(500, 500); 
-        setTitle("RINCON DULCE");
-        setResizable(false);
-        
-        setLocationRelativeTo(null);
         iniciarComponentes();
-
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public void iniciarComponentes(){
+    private void iniciarComponentes(){
         panelPrincipal = new JPanel();
         this.getContentPane().add(panelPrincipal);
         imagenIcono = new ImageIcon(getClass().getResource("/imagen/Rincon_Dulce.jpg"));
@@ -71,7 +55,6 @@ public class Ventana extends JFrame{
         
         for(int i = 0; i<botonesPanelPrincipal.length; i++){
             botonesPanelPrincipal[i] = new JButton();
-            // botonesPanelPrincipal[i].addActionListener(this);
             botonesPanelPrincipal[i].setFont(new Font("Arial",Font.BOLD,15));
             botonesPanelPrincipal[i].setText(opcionesPanelPrincipal[i]);
             botonesPanelPrincipal[i].setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),5));
@@ -120,7 +103,6 @@ public class Ventana extends JFrame{
         categorias = new JComboBox<>(opciones);
         categorias.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),30));
         categorias.setFont(new Font("Arial", Font.BOLD,25));
-        // categorias.addActionListener(this);
         for(int i = 0; i<etiquetasPanelInsertar.length; i++){
             etiquetasPanelInsertar[i] = new JLabel();
             etiquetasPanelInsertar[i].setText(opcionesPanelEtiquetas[i]);
@@ -144,7 +126,6 @@ public class Ventana extends JFrame{
             }
         }        
         botonEnviarInsertar = new JButton("Enviar");
-        // botonEnviarInsertar.addActionListener(this);
         
         panelInsertar.add(panelInsertarEtiquetas, BorderLayout.CENTER);
         panelInsertar.add(botonEnviarInsertar, BorderLayout.SOUTH);
@@ -174,7 +155,6 @@ public class Ventana extends JFrame{
         });
 
         botonEnviarActualizar = new JButton("Enviar");
-        // botonEnviarActualizar.addActionListener(this);
         botonEnviarActualizar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),50));
         botonEnviarActualizar.setFont(new Font("Arial", Font.BOLD, 30));
         panelActualizar.add(etiquetaActualizar);
@@ -250,7 +230,6 @@ public class Ventana extends JFrame{
         scroll6.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),15));
 
         botonEnviarActualizarOpciones = new JButton("Enviar");
-        // botonEnviarActualizarOpciones.addActionListener(this);
         botonEnviarActualizarOpciones.setFont(new Font("Arial", Font.BOLD, 20));
         botonEnviarActualizarOpciones.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),15));
 
@@ -290,7 +269,6 @@ public class Ventana extends JFrame{
         });
 
         botonEliminar = new JButton("Eliminar");
-        // botonEliminar.addActionListener(this);
         botonEliminar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),110));
         botonEliminar.setFont(new Font("Arial", Font.BOLD, 30));
 
@@ -321,7 +299,6 @@ public class Ventana extends JFrame{
         });
 
         botonBuscar = new JButton("Buscar");
-        // botonBuscar.addActionListener(this);
         botonBuscar.setBorder(BorderFactory.createLineBorder(Color.decode("#FFF3F9"),5));
         botonBuscar.setFont(new Font("Arial", Font.BOLD, 30));
 
@@ -346,7 +323,6 @@ public class Ventana extends JFrame{
         etiquetaBuscarPrecio.setHorizontalAlignment(SwingConstants.CENTER);
 
         botonRegresar = new JButton("Regresar");
-        // botonRegresar.addActionListener(this);
 
         panelBuscarInferior.add(etiquetaBuscarNombre);
         panelBuscarInferior.add(etiquetaBuscarCategoria);
@@ -368,15 +344,9 @@ public class Ventana extends JFrame{
         scroll7 = new JScrollPane(areaTextoListar, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
         botonRegresarListar = new JButton("Regresar");
-        // botonRegresarListar.addActionListener(this);
 
 
         panelListar.add(scroll7, BorderLayout.CENTER);
         panelListar.add(botonRegresarListar, BorderLayout.SOUTH);
     }
-
-    // @Override
-    // public void actionPerformed(ActionEvent e) {
-    // }
-
 }

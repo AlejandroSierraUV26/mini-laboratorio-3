@@ -8,6 +8,5 @@ public class App {
         Dulce d1 = new Dulce();
         Control c1 = new Control(d1, v1);
         c1.iniciarVista();
-        
     }
 }

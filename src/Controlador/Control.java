@@ -2,7 +2,6 @@ package Controlador;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -13,7 +12,6 @@ import Vista.Ventana;
 public class Control implements ActionListener{
     private Dulce modelo;
     private Ventana vista;
-    ArrayList <Dulce> lista_dulces = new ArrayList<Dulce>();
 
     public Control(Dulce modelo, Ventana vista){
         this.modelo = modelo;
@@ -49,7 +47,6 @@ public class Control implements ActionListener{
             vista.panelPrincipal.setVisible(false);
             vista.panelInsertar.setVisible(true);
             vista.add(vista.panelInsertar);
-            modelo.psbotonInsertar();   
         }
         else if(evento.getSource()==vista.botonEnviarInsertar){
             if(vista.areaTextoNombre.getText().isEmpty() || vista.areaTextoPrecio.getText().isEmpty() || vista.areaTextoCantidad.getText().isEmpty()){
@@ -74,7 +71,7 @@ public class Control implements ActionListener{
                 }
                 
                 Dulce n1 = new Dulce(vista.areaTextoNombre.getText(),codigo,vista.categorias.getSelectedItem().toString(),Short.parseShort(vista.areaTextoCantidad.getText()),Short.parseShort(vista.areaTextoPrecio.getText()));
-                lista_dulces.add(n1);
+                modelo.lista_dulces.add(n1);
                 
                 JOptionPane.showMessageDialog(null,"El codigo del producto es: " + codigo, "CODIGO", JOptionPane.INFORMATION_MESSAGE);
                 vista.areaTextoNombre.setText(null);
@@ -92,7 +89,6 @@ public class Control implements ActionListener{
             vista.panelPrincipal.setVisible(false);
             vista.panelActualizar.setVisible(true);
             vista.add(vista.panelActualizar);
-            modelo.psbotonActualizar();
         }
         else if(evento.getSource()==vista.botonEnviarActualizar){
                 if(vista.areaTextoActualizar.getText().isEmpty() || vista.areaTextoActualizar.getText().length()<6){
@@ -109,18 +105,18 @@ public class Control implements ActionListener{
             vista.contenido5 = vista.areaTextoActualizarNombre.getText().trim();
             vista.contenido6 = vista.areaTextoActualizarPrecio.getText().trim();
             vista.contenido7 = vista.areaTextoActualizarCantidad.getText().trim();
-            for(int i=0; i<lista_dulces.size();i++){
-                if(lista_dulces.get(i).getCodigo().equals(vista.areaTextoActualizar.getText())){
+            for(int i=0; i<modelo.lista_dulces.size();i++){
+                if(modelo.lista_dulces.get(i).getCodigo().equals(vista.areaTextoActualizar.getText())){
                     if(vista.checkBox1.isSelected()){
-                        lista_dulces.get(i).setNombre(vista.contenido5);
+                        modelo.lista_dulces.get(i).setNombre(vista.contenido5);
                         
                         }
                     if(vista.checkBox2.isSelected()){
-                        lista_dulces.get(i).setPrecio(Short.parseShort(vista.contenido6));
+                        modelo.lista_dulces.get(i).setPrecio(Short.parseShort(vista.contenido6));
                         
                     }
                     if(vista.checkBox3.isSelected()){
-                        lista_dulces.get(i).setCantidad(Short.parseShort(vista.contenido6));      
+                        modelo.lista_dulces.get(i).setCantidad(Short.parseShort(vista.contenido6));      
                         
                     }
                 }
@@ -143,7 +139,6 @@ public class Control implements ActionListener{
             vista.panelPrincipal.setVisible(false);
             vista.panelEliminar.setVisible(true);
             vista.add(vista.panelEliminar);
-            modelo.psbotonEliminar();
         }
         else if(evento.getSource() == vista.botonEliminar){
             vista.contenido8 = vista.areaTextoEliminar.getText().trim();
@@ -151,9 +146,9 @@ public class Control implements ActionListener{
                 JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
             }
             else{
-                for(int i=0; i<lista_dulces.size();i++){
-                    if(lista_dulces.get(i).getCodigo().equals(vista.contenido8)){
-                        lista_dulces.remove(lista_dulces.get(i));
+                for(int i=0; i<modelo.lista_dulces.size();i++){
+                    if(modelo.lista_dulces.get(i).getCodigo().equals(vista.contenido8)){
+                        modelo.lista_dulces.remove(modelo.lista_dulces.get(i));
                     }
                 }
                 
@@ -168,7 +163,6 @@ public class Control implements ActionListener{
             vista.panelPrincipal.setVisible(false);
             vista.panelBuscar.setVisible(true);
             vista.add(vista.panelBuscar);
-            modelo.psbotonBuscar();
         }
         else if(evento.getSource() == vista.botonBuscar){
             vista.contenido9 = vista.areaTextoBuscar.getText().trim();
@@ -176,12 +170,12 @@ public class Control implements ActionListener{
                 JOptionPane.showMessageDialog(null,"El codigo debe ser de 6 caracteres","Advertencia",JOptionPane.WARNING_MESSAGE);
             }
             else{
-                    for(int i=0; i<lista_dulces.size();i++){
-                        if(lista_dulces.get(i).getCodigo().equals(vista.contenido9)){
-                            vista.etiquetaBuscarNombre.setText("Nombre: " + lista_dulces.get(i).getNombre());
-                            vista.etiquetaBuscarCategoria.setText("Categoria: "+ lista_dulces.get(i).getCategoria());
-                            vista.etiquetaBuscarCantidad.setText("Cantidad: "+ lista_dulces.get(i).getCantidad());
-                            vista.etiquetaBuscarPrecio.setText("Precio: " + lista_dulces.get(i).getPrecio());
+                    for(int i=0; i<modelo.lista_dulces.size();i++){
+                        if(modelo.lista_dulces.get(i).getCodigo().equals(vista.contenido9)){
+                            vista.etiquetaBuscarNombre.setText("Nombre: " + modelo.lista_dulces.get(i).getNombre());
+                            vista.etiquetaBuscarCategoria.setText("Categoria: "+ modelo.lista_dulces.get(i).getCategoria());
+                            vista.etiquetaBuscarCantidad.setText("Cantidad: "+ modelo.lista_dulces.get(i).getCantidad());
+                            vista.etiquetaBuscarPrecio.setText("Precio: " + modelo.lista_dulces.get(i).getPrecio());
                         }
             }
 
@@ -198,13 +192,12 @@ public class Control implements ActionListener{
             vista.add(vista.panelPrincipal);
         }
         else if(evento.getSource() == vista.botonesPanelPrincipal[4]){
-            for(int i = 0; i<lista_dulces.size(); i++){
-                vista.areaTextoListar.append(lista_dulces.get(i).MostrarDatos() + "\n\n");
+            for(int i = 0; i<modelo.lista_dulces.size(); i++){
+                vista.areaTextoListar.append(modelo.lista_dulces.get(i).MostrarDatos() + "\n\n");
             }
             vista.panelPrincipal.setVisible(false);
             vista.panelListar.setVisible(true);            
             vista.add(vista.panelListar);
-            modelo.psbotonListar();
         }
         else if(evento.getSource() == vista.botonRegresarListar){
             vista.areaTextoListar.setText(null);

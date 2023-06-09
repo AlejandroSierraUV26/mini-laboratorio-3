@@ -23,7 +23,7 @@ import java.awt.event.KeyEvent;
 public class Ventana extends JFrame {
     public JPanel panelPrincipal, panelPrincipal2, panelPrincipal3, panelEspacioDerecha, panelEspacioIzquierda, panelEspacioAbajo, panelInsertar, panelInsertarEtiquetas, panelActualizar, panelActualizarDatos, panelActualizarOpciones, panelEliminar, panelBuscar, panelBuscarSuperior, panelBuscarInferior, panelBuscarInferiorCentro, panelListar;
     ImageIcon imagenIcono;
-    JLabel logoRinconDulce, etiquetaActualizar, etiquetaActualizarDatos, etiquetaRelleno1, etiquetaRelleno2, etiquetaEliminar, etiquetaBuscar, etiquetaBuscarNombre, etiquetaBuscarCategoria, etiquetaBuscarCantidad, etiquetaBuscarPrecio;
+    public JLabel logoRinconDulce, etiquetaActualizar, etiquetaActualizarDatos, etiquetaRelleno1, etiquetaRelleno2, etiquetaEliminar, etiquetaBuscar, etiquetaBuscarNombre, etiquetaBuscarCategoria, etiquetaBuscarCantidad, etiquetaBuscarPrecio;
     public JButton[] botonesPanelPrincipal = new JButton[5];
     JLabel[] etiquetasPanelInsertar = new JLabel[4];
     String opcionesPanelPrincipal[] = {"Insertar Dulce", "Actualizar Dulces", "Eliminar Dulces", "Buscar Dulces", "Listar Dulces"};
@@ -34,7 +34,7 @@ public class Ventana extends JFrame {
     public JComboBox<String> categorias;
     public String contenido, contenido2, contenido3, contenido4, contenido5, contenido6, contenido7, contenido8, contenido9, categoriaSeleccionada;
     JScrollPane scroll, scroll2, scroll3, scroll4, scroll5, scroll6, scroll7;
-    JCheckBox checkBox1, checkBox2, checkBox3;
+    public JCheckBox checkBox1, checkBox2, checkBox3;
     public Ventana(){
         iniciarComponentes();
         setDefaultCloseOperation(EXIT_ON_CLOSE);

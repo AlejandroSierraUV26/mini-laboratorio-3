@@ -57,17 +57,13 @@ public class Control implements ActionListener{
            try {
                 String userInput = vista.areaTextoPrecio.getText();
                 String userInput2 = vista.areaTextoCantidad.getText();
-                precio = Short.parseShort(userInput); // O Double.parseDouble(userInput) si esperas un número decima
-                cantidad = Short.parseShort(userInput2); // O Double.parseDouble(userInput) si esperas un número decima
+                precio = Short.parseShort(userInput);
+                cantidad = Short.parseShort(userInput2); 
                 
                 ValorError = false;
-    
-                // Aquí puedes realizar acciones adicionales con el número ingresado correctamente
-                // ...
-    
+
             } catch (NumberFormatException e) {
                 ValorError = true;
-            // El usuario ingresó un valor no válido, muestra un mensaje de error o realiza alguna acción
             }
             
             String codigo="";
@@ -129,7 +125,8 @@ public class Control implements ActionListener{
                     vista.panelActualizar.setVisible(false);             
                     vista.panelActualizarDatos.setVisible(true);
                     vista.add(vista.panelActualizarDatos);
-                }
+                    }
+                break;
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"El codigo que ingresa al parecer no existe","Advertencia",JOptionPane.WARNING_MESSAGE);
@@ -138,9 +135,34 @@ public class Control implements ActionListener{
                
         }
         else if(evento.getSource() == vista.botonEnviarActualizarOpciones){
+            Boolean campos_vacios = false;
+            Boolean ValorError = false;
+            Short cantidad_actualizar =0;
+            Short precio_actualizar = 0; 
             vista.contenido5 = vista.areaTextoActualizarNombre.getText().trim();
             vista.contenido6 = vista.areaTextoActualizarPrecio.getText().trim();
             vista.contenido7 = vista.areaTextoActualizarCantidad.getText().trim();
+            if(vista.contenido5.isEmpty() && vista.contenido6.isEmpty() && vista.contenido7.isEmpty()){
+                campos_vacios = false;
+                JOptionPane.showMessageDialog(null,"Debes seleccionar una opcion y llenarla para actualizar","Advertencia",JOptionPane.WARNING_MESSAGE);
+            }
+            else{
+                campos_vacios = true;
+            }
+            try {
+                if (!(vista.contenido6.isEmpty() || vista.contenido7.isEmpty())){
+                String precio = vista.areaTextoActualizarPrecio.getText();
+                String cantidad = vista.areaTextoActualizarCantidad.getText();
+                precio_actualizar = Short.parseShort(precio);
+                cantidad_actualizar = Short.parseShort(cantidad); 
+                
+                ValorError = false; 
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null,"En los campos de Precio y Cantidad solo se permiten numericos","Advertencia",JOptionPane.WARNING_MESSAGE);
+                ValorError = true;
+            }
+            if (campos_vacios && !ValorError){
             for(int i=0; i<modelo.lista_dulces.size();i++){
                 if(modelo.lista_dulces.get(i).getCodigo().equals(vista.areaTextoActualizar.getText())){
                     if(vista.checkBox1.isSelected()){
@@ -148,11 +170,11 @@ public class Control implements ActionListener{
                         
                         }
                     if(vista.checkBox2.isSelected()){
-                        modelo.lista_dulces.get(i).setPrecio(Short.parseShort(vista.contenido6));
+                        modelo.lista_dulces.get(i).setPrecio(precio_actualizar);
                         
                     }
                     if(vista.checkBox3.isSelected()){
-                        modelo.lista_dulces.get(i).setCantidad(Short.parseShort(vista.contenido6));      
+                        modelo.lista_dulces.get(i).setCantidad(cantidad_actualizar);      
                         
                     }
                 }
@@ -169,6 +191,8 @@ public class Control implements ActionListener{
             vista.panelPrincipal.setVisible(true);
                 
             vista.add(vista.panelPrincipal);
+            }
+            
         }
 
         else if(evento.getSource() == vista.botonesPanelPrincipal[2]){
@@ -199,6 +223,7 @@ public class Control implements ActionListener{
                         vista.panelEliminar.setVisible(false);
                         vista.panelPrincipal.setVisible(true);
                         vista.add(vista.panelPrincipal);
+                        break;
                     }
                     
                 }
@@ -227,6 +252,7 @@ public class Control implements ActionListener{
                             vista.etiquetaBuscarPrecio.setText("Precio: " + modelo.lista_dulces.get(i).getPrecio());
                         }
                     }
+                    break;
                 }
                 else{
                     JOptionPane.showMessageDialog(null,"El codigo que ingresa al parecer no existe","Advertencia",JOptionPane.WARNING_MESSAGE);
